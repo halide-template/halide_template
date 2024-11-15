@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sm:blocks xmlns:sm="http://example.com/SimulinkModel"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           name="matrix_mul_transpose"
+           xsi:schemaLocation="http://example.com/SimulinkModel SimulinkModel.xsd">
+   <block blocktype="Inport" name="matrix_mul_transpose_Input" rate="0.2">
+      <output dimensions="[2 512 512]" line="matrix_mul_transpose_Input_1"
+              port="matrix_mul_transpose_Input_1"
+              usename="true">
+         <connect block="matrix_mul_transpose_transpose1"
+                  port="matrix_mul_transpose_transpose1_1"/>
+      </output>
+   </block>
+   <block blocktype="Inport" name="matrix_mul_transpose_Input1" rate="0.2">
+      <output dimensions="[2 512 512]" line="matrix_mul_transpose_Input1_1"
+              port="matrix_mul_transpose_Input1_1"
+              usename="true">
+         <connect block="matrix_mul_transpose_transpose2"
+                  port="matrix_mul_transpose_transpose2_1"/>
+      </output>
+   </block>
+   <block blocktype="SubSystem" forced="func" name="matrix_mul_transpose_mul" rate="0.2"
+          type="atomic">
+      <input line="matrix_mul_transpose_transpose1_1" port="matrix_mul_transpose_mul_1">
+         <connect block="matrix_mul_transpose_transpose1"
+                  port="matrix_mul_transpose_transpose1_1"/>
+      </input>
+      <input line="matrix_mul_transpose_transpose2_1" port="matrix_mul_transpose_mul_2">
+         <connect block="matrix_mul_transpose_transpose2"
+                  port="matrix_mul_transpose_transpose2_1"/>
+      </input>
+      <output dimensions="[2 512 512]" line="matrix_mul_transpose_mul_1"
+              port="matrix_mul_transpose_mul_1"
+              usename="true">
+         <connect block="matrix_mul_transpose_Output" port="matrix_mul_transpose_Output_1"/>
+      </output>
+   </block>
+   <block blocktype="SubSystem" forced="func" name="matrix_mul_transpose_transpose1"
+          rate="0.2"
+          type="atomic">
+      <input line="matrix_mul_transpose_Input_1" port="matrix_mul_transpose_transpose1_1">
+         <connect block="matrix_mul_transpose_Input" port="matrix_mul_transpose_Input_1"/>
+      </input>
+      <output dimensions="[2 512 512]" line="matrix_mul_transpose_transpose1_1"
+              port="matrix_mul_transpose_transpose1_1"
+              usename="true">
+         <connect block="matrix_mul_transpose_mul" port="matrix_mul_transpose_mul_1"/>
+      </output>
+   </block>
+   <block blocktype="SubSystem" forced="func" name="matrix_mul_transpose_transpose2"
+          rate="0.2"
+          type="atomic">
+      <input line="matrix_mul_transpose_Input1_1" port="matrix_mul_transpose_transpose2_1">
+         <connect block="matrix_mul_transpose_Input1" port="matrix_mul_transpose_Input1_1"/>
+      </input>
+      <output dimensions="[2 512 512]" line="matrix_mul_transpose_transpose2_1"
+              port="matrix_mul_transpose_transpose2_1"
+              usename="true">
+         <connect block="matrix_mul_transpose_mul" port="matrix_mul_transpose_mul_2"/>
+      </output>
+   </block>
+   <block blocktype="Outport" name="matrix_mul_transpose_Output" rate="0.2">
+      <input line="matrix_mul_transpose_mul_1" port="matrix_mul_transpose_Output_1">
+         <connect block="matrix_mul_transpose_mul" port="matrix_mul_transpose_mul_1"/>
+      </input>
+   </block>
+</sm:blocks>
