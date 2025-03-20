@@ -10,6 +10,6 @@ This folder also includes two examples of XML files along with several scripts t
 
 - `single_module.py`: This script is designed to modify Simulink Coder function files and Halide generator templates. It automatically updates these elements based on the parameters obtained, ensuring that changes are applied consistently and accurately.
 
-- `extractDimension.m` and `extractSignalDimension.m`: These scripts are used to extract data from Simulink models and output it in TXT file format. extractDimension.m is a script for mixed models, while extractSignalDimension.m is for single models.
+- `extractDimension.m` and `extractSignalDimension.m`: These scripts are used to extract data from Simulink models and output it in TXT file format. extractDimension.m is a script for mixed models, while extractSignalDimension.m is for single models. For example, to extract data from matrix_mul.slx, the extractSignalDimension.m script should be used with matrix_mul as the input parameter. The output will be saved as dimension.txt. Similarly, to extract data from matrix_mul_transpose.slx, the extractDimension.m script should be used with matrix_mul_transpose as the input parameter, and the output will also be saved as dimension.txt.
 
 - `get_single_txt_data.py` and `get_txt_data.py`: These scripts are used for extracting parameters from single and composite models from TXT file, respectively. The extracted data is outputted into an Excel spreadsheet.
